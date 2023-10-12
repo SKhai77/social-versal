@@ -9,7 +9,7 @@ const reactionSchema = new Schema({
   reactionBody: {
     type: String,
     Required: true,
-    maxlenght: 280,
+    maxlength: 280,
   },
   username: {
     type: String,
@@ -23,30 +23,49 @@ const reactionSchema = new Schema({
 });
 
 // Schema to create Thought model
-const thoughtSchema = new Schema({
-  thoughtText: {
-    type: String,
-    required: true,
-    minlenght: 1,
-    maxlenght: 280,
+const thoughtSchema = new Schema(
+  {
+    thoughtText: {
+      type: String,
+      required: true,
+      minlength: 1,
+      maxlength: 280,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: (timestamp) => new Date(timestamp).toLocaleString(),
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+    reactions: [
+      {
+        reactionBody: {
+          type: String,
+          required: true,
+          maxlength: 280,
+        },
+        username: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-    get: (timestamp) => new Date(timestamp).toLocaleString(),
-  },
-  username: {
-    type: String,
-    required: true,
-  },
-  reactions: [reactionSchema],
-});
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
+  }
+);
 
-// Virtual to get the reactionCount
+// Virtual to get the reaction count
 thoughtSchema.virtual("reactionCount").get(function () {
   return this.reactions.length;
 });
-
 // Initialize the Thought model
 const Thought = model("Thought", thoughtSchema);
 
