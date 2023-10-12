@@ -17,12 +17,13 @@ The purpose of this project is to build an API for a social network web applicat
 
 ## Technologies
 
+- Day.js
+- Express.js
 - JavaScript
+- JSON
+- Mongoose ODM
 - Node.js 
 - NoSQL/ MongoDB
-- Mongoose ODM
-- Express.js
-- Json
 
 
 ## Installation
