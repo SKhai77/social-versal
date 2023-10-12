@@ -20,7 +20,7 @@ const reactionSchema = new Schema({
   createdAt: {
     type: Date,
     default: () => dayjs().toDate(),
-    get: (timestamp) => dayjs(timestamp).format("MMM DD, YYYY HH:mm:ss"),
+    get: (timestamp) => dayjs(timestamp).format("MMM DD, YYYY [at] HH:mm:ss A"),
   },
 });
 
@@ -36,7 +36,7 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: () => dayjs().toDate(),
-      get: (timestamp) => dayjs(timestamp).format("MMM DD, YYYY HH:mm:ss"),
+      get: (timestamp) => dayjs(timestamp).format("MMM DD, YYYY [at] HH:mm:ss A"),
     },
     username: {
       type: String,
@@ -59,6 +59,7 @@ const thoughtSchema = new Schema(
   {
     toJSON: {
       virtuals: true,
+      getters: true,
     },
     id: false,
   }
