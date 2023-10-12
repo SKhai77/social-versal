@@ -1,4 +1,6 @@
 const { Schema, model, Types } = require("mongoose");
+// Importing dayjs
+const dayjs = require("dayjs");
 
 // Schema to create Reaction
 const reactionSchema = new Schema({
@@ -8,17 +10,17 @@ const reactionSchema = new Schema({
   },
   reactionBody: {
     type: String,
-    Required: true,
+    required: true,
     maxlength: 280,
   },
   username: {
     type: String,
-    Required: true,
+    required: true,
   },
   createdAt: {
     type: Date,
-    default: Date.now,
-    get: (timestamp) => new Date(timestamp).toLocaleString(),
+    default: () => dayjs().toDate(),
+    get: (timestamp) => dayjs(timestamp).format("MMM DD, YYYY HH:mm:ss"),
   },
 });
 
@@ -33,8 +35,8 @@ const thoughtSchema = new Schema(
     },
     createdAt: {
       type: Date,
-      default: Date.now,
-      get: (timestamp) => new Date(timestamp).toLocaleString(),
+      default: () => dayjs().toDate(),
+      get: (timestamp) => dayjs(timestamp).format("MMM DD, YYYY HH:mm:ss"),
     },
     username: {
       type: String,
@@ -66,6 +68,7 @@ const thoughtSchema = new Schema(
 thoughtSchema.virtual("reactionCount").get(function () {
   return this.reactions.length;
 });
+
 // Initialize the Thought model
 const Thought = model("Thought", thoughtSchema);
 
