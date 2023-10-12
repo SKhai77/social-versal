@@ -4,7 +4,7 @@ module.exports = {
   // GET all thoughts
   async getThoughts(req, res) {
     try {
-      const thoughts = await Thought.find().populate("users");
+      const thoughts = await Thought.find().populate("username");
       res.json(thoughts);
     } catch (err) {
       console.log(err);
@@ -17,7 +17,7 @@ module.exports = {
     try {
       const thought = await Thought.findOne({ _id: req.params.thoughtId })
         .select("-__v")
-        .populate("users");
+        .populate("username");
 
       if (!thought) {
         return res.status(404).json({ message: "No thought with that ID" });
@@ -85,7 +85,7 @@ module.exports = {
         thoughtId,
         { $addToSet: { users: userId } },
         { new: true }
-      ).populate("users");
+      ).populate("username");
 
       if (!thought) {
         return res.status(404).json({ message: "No thought found with that ID :(" });
@@ -106,7 +106,7 @@ module.exports = {
         thoughtId,
         { $pull: { users: userId } },
         { new: true }
-      ).populate("users");
+      ).populate("username");
 
       if (!thought) {
         return res.status(404).json({ message: "No thought found with that ID :(" });
@@ -128,7 +128,7 @@ module.exports = {
         thoughtId,
         { $push: { reactions: { reactionBody, username } } },
         { new: true }
-      ).populate("users");
+      ).populate("username");
 
       if (!updatedThought) {
         return res.status(404).json({ message: "No thought found with that ID :(" });
@@ -149,7 +149,7 @@ module.exports = {
         thoughtId,
         { $pull: { reactions: { _id: reactionId } } },
         { new: true }
-      ).populate("users");
+      ).populate("username");
 
       if (!updatedThought) {
         return res.status(404).json({ message: "No thought found with that ID :(" });
