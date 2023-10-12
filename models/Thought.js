@@ -11,14 +11,14 @@ const reactionSchema = new Schema({
     Required: true,
     maxlenght: 280,
   },
-    username: {
-      type: String,
-      Required: true,
+  username: {
+    type: String,
+    Required: true,
   },
   createdAt: {
     type: Date,
     default: Date.now,
-    get: (timestamp) => new Date(timestamp).toLocaleString()
+    get: (timestamp) => new Date(timestamp).toLocaleString(),
   },
 });
 
@@ -43,9 +43,9 @@ const thoughtSchema = new Schema({
 });
 
 // Virtual to get the reactionCount
-thoughtSchema.virtual('reactionCount').get(function () {
-return this.reactions.lenght;
-})
+thoughtSchema.virtual("reactionCount").get(function () {
+  return this.reactions.lenght;
+});
 
 // Initialize the Thought model
 const Thought = model("Thought", thoughtSchema);
