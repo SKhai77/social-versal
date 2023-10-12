@@ -86,13 +86,10 @@ module.exports = {
 
   // POST to add a new friend to a user's friend list
   async addFriend(req, res) {
-    console.log("You are adding a friend");
-    console.log(req.body);
-
     try {
       const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
-        { $addToSet: { friends: req.body } },
+        { $addToSet: { friends: req.params.friendId } },
         { runValidators: true, new: true }
       );
 
@@ -107,12 +104,12 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // DELETE to a remove friend from a user's friend list
+  // DELETE to remove a friend from a user's friend list
   async removeFriend(req, res) {
     try {
       const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
-        { $pull: { friends: { friendId: req.params.friendId } } },
+        { $pull: { friends: req.params.friendId } },
         { runValidators: true, new: true }
       );
 
