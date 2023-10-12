@@ -6,7 +6,7 @@ const { getUsers, getSingleUser, createUser, updateUser, deleteUser, addFriend, 
 // Defining routes for handling GET, POST, PUT, and DELETE requests at the root ("/") endpoint
 router.route("/").get(getUsers).post(createUser);
 router.route("/:userId").get(getSingleUser).put(updateUser).delete(deleteUser);
-router.route("/:userId/friends").post(addFriend).delete(removeFriend);
+router.route("/:userId/friends/:friendId").post(addFriend).delete(removeFriend);
 
 // Exporting the router
 module.exports = router;
