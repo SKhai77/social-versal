@@ -2,17 +2,41 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 
-## Description
+## User Story
 
-The purpose of this project is to build an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list by using Express.js for routing, a MongoDB database, and the Mongoose ODM. MongoDB is chosed for this project over SQL as it is a popular choice for many social networks due to its speed with large amounts of data and flexibility with unstructured data.
+```md
+AS A social media startup
+I WANT an API for my social network that uses a NoSQL database
+SO THAT my website can handle large amounts of unstructured data
+```
+
+## Acceptance Criteria
+
+```md
+GIVEN a social network API
+WHEN I enter the command to invoke the application
+THEN my server is started and the Mongoose models are synced to the MongoDB database
+WHEN I open API GET routes in Insomnia for users and thoughts
+THEN the data for each of these routes is displayed in a formatted JSON
+WHEN I test API POST, PUT, and DELETE routes in Insomnia
+THEN I am able to successfully create, update, and delete users and thoughts in my database
+WHEN I test API POST and DELETE routes in Insomnia
+THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
+```
 
 
 ## Table of Contents
 
+- [Description](#description)
 - [Technologies](#technologies)
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
+
+
+## Description
+
+The purpose of this project is to build an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list by using Express.js for routing, a MongoDB database, and the Mongoose ODM. MongoDB is chosed for this project over SQL as it is a popular choice for many social networks due to its speed with large amounts of data and flexibility with unstructured data.
 
 
 ## Technologies
@@ -30,8 +54,6 @@ The purpose of this project is to build an API for a social network web applicat
 
 In order to be able to run the applicaton, you are required to do the following:
 
-- Install Node.js on your computer by downloading it from their website here, https://nodejs.org/en.
-- If you are not sure how to install it. Click here for the instruction, https://coding-boot-camp.github.io/full-stack/nodejs/how-to-install-nodejs.
 - Download the zip file/ clone the GitHub repo 
 - Open the folder in VSCode
 - Click the "Toggle Panel" on the right-side or "Ctrl+J" to see the Terminal or Command Line Interface(CLI)
